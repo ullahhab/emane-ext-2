@@ -34,7 +34,7 @@ n64FragmentSequence_{u64FragmentSequence}
 
 
 inline 
-const EMANE::Models::HBShim::MessageComponent::MessageComponent::Data &
+const EMANE::Models::HBShim::MessageComponent::Data &
 EMANE::Models::HBShim::MessageComponent::MessageComponent::getData() const
 {
   return data_;
