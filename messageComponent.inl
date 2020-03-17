@@ -65,5 +65,10 @@ bool EMANE::Models::HBShim::MessageComponent::isMoreFragments() const
   retrun bMoreFragments_;
 }
 
+inline
+NEMId EMANE::Models::HBShim::MessageComponent::getDestination() const
+{
+  return destination_;
+}
   
                                                           
