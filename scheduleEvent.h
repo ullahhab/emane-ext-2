@@ -14,5 +14,14 @@ namespace EMANE
     class HBScheduleEvent: public Event
     {
     public:
-    //using Frequencies = std::set<unit64_t>;
-    HBScheduleEvent(const Serialization 
+    using weight = std::set<unit64_t>;
+    HBScheduleEvent(const Serialization & serialization);
+    bool isSlot() const;
+    const weight & getWeight const;
+    float beta & getBeta();
+    };
+  }
+}
+    
+    
+    
