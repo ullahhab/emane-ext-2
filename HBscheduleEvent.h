@@ -18,7 +18,7 @@ namespace EMANE
     HBScheduleEvent(const Serialization & serialization);
     const weight & getWeight() const;
     float beta & getBeta() const;
-    bool has_structure();
+    bool isSlotStructured();
     std::pair<const SlotStructure &, bool> getSlotStructure() const;
     private:
       class Implementation;
