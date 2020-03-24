@@ -5,7 +5,7 @@
 
 class EMANE::Events::HBScheduleEvent::Implementation
 {
-  Implementation(const Serilizaion & serialization):
+  Implementation(const Serializaion & serialization):
     bHasStructure_{}
     {
       EMANEMessage::HBScheduleEvent msg{};
