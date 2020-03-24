@@ -9,4 +9,28 @@ class EMANE::Events::HBScheduleEvent::Implementation
     bHasStructure_{}
     {
       EMANEMessage::HBScheduleEvent msg{};
+      if(!msg.ParseFromString(serialization))
+      {
+        throw SerialationException("unable to deserialize : HBScheduleEvent");
+      }
+      
+     //TODO: Confirm what should a scheduler be doing exactly? Also that is something that would come along with some development
+      
+      if(msh.has_structure())
+      {
+        bHasStructure_ = true;
+      }
+      
+      
+      
+      Emane::Events::HBScheduleEvent::HBScheduleEvent(const Serilization & serialization):
+      Event{IDENTIFIER},
+      pImpl_{new Impelementation{serialization}}{}
+      
+      EMANE::Events::HBScheduleEvent::~HBScheduleEvent(){}
+      
+      
+      bool EMANE::Event::is
+     
+        
       
