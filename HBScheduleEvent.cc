@@ -24,13 +24,24 @@ class EMANE::Events::HBScheduleEvent::Implementation
       
       
       Emane::Events::HBScheduleEvent::HBScheduleEvent(const Serilization & serialization):
-      Event{IDENTIFIER},
       pImpl_{new Impelementation{serialization}}{}
       
       EMANE::Events::HBScheduleEvent::~HBScheduleEvent(){}
       
       
-      bool EMANE::Event::is
+      bool EMANE::Event::HBScheduleEvent::isSlotStructured(){
+        return pImpl->isSlotStructured();
+      }
+      
+      
+     const EMANE::Events::HBScheduleEvent::weights & EMANE::Events::HBScheduleEvent::getWeights() const
+     {
+       return pImpl_->getWeights();
+     }
      
+     const EMANE::Events::HBScheduleEvent::betas & EMANE::Events::HBScheduleEvent::getBetas() const {
+       return pImpl->getBetar();
+     }
+       
         
       
