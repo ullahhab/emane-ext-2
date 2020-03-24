@@ -20,6 +20,9 @@ class EMANE::Events::HBScheduleEvent::Implementation
       {
         bHasStructure_ = true;
       }
+    }
+}
+
       
       
       
