@@ -40,7 +40,7 @@ class EMANE::Events::HBScheduleEvent::Implementation
      }
      
      const EMANE::Events::HBScheduleEvent::betas & EMANE::Events::HBScheduleEvent::getBetas() const {
-       return pImpl->getBetar();
+       return pImpl->getBetas();
      }
        
         
