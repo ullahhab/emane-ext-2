@@ -16,7 +16,7 @@ class EMANE::Events::HBScheduleEvent::Implementation
       
      //TODO: Confirm what should a scheduler be doing exactly? Also that is something that would come along with some development
       
-      if(msh.has_structure())
+      if(msg.has_structure())
       {
         bHasStructure_ = true;
       }
