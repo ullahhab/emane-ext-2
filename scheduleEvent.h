@@ -19,6 +19,9 @@ namespace EMANE
     const weight & getWeight const;
     float beta & getBeta();
     std::pair<const SlotStructure &, bool> getSlotStructure() const;
+    private:
+      class Implementation;
+      std::unique_ptr<Implementation> pImpl_;
     };
   }
 }
