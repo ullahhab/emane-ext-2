@@ -16,7 +16,7 @@ namespace EMANE
     public:
     using weights = std::set<unit64_t>;
     HBScheduleEvent(const Serialization & serialization);
-    const weight & getWeight() const;
+    const weights & getWeights() const;
     float beta & getBeta() const;
     bool isSlotStructured();
     std::pair<const SlotStructure &, bool> getSlotStructure() const;
