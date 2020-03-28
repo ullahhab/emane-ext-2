@@ -1,6 +1,7 @@
 #ifndef EMANEMODELHBSHIMMESSAGECOMPONENT_HEADER_
 #define EMANEMODELHBSHIMMESSAGECOMPONENT_HEADER_
 
+#include "emane/models/HBShim/messagecomponent.inl"
 
 //TODO: Subsidary files needed for defining and extending this class.
 
