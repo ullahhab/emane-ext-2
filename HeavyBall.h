@@ -24,7 +24,7 @@ namespace EMANE
       
       
    private:
-      NEMId neId_;
+      NEMId nemId_;
       std::uint64_t weight_;
       float beta_;
     };
