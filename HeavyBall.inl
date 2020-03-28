@@ -20,7 +20,7 @@ std::unit64_t EMANE::Events::HeavyBall::getWeight() const
 }
 
 inline
-float EMANE::Events::HeavyBall::getbeata() const
+float EMANE::Events::HeavyBall::getbeta() const
 {
   return beta_;
 }
