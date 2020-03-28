@@ -18,7 +18,7 @@ namespace EMANE
         
       NEMId getNEMId() const;
       std::uint64_t getWeight() const;
-      float getBeat() const;
+      float getBeta() const;
       
       
    private:
