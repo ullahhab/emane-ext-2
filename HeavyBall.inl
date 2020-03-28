@@ -8,4 +8,19 @@ weight_{weight},
 beta_{beta}
 
 inline
-EMANE::NEMId 
+EMANE::NEMId EMANE::Events::HeavyBall::getNEMId() const
+{
+  return nemId_;
+}
+
+inline
+std::unit64_t EMANE::Events::HeavyBall::getWeight() const
+{
+  return weight_;
+}
+
+inline
+float EMANE::Events::HeavyBall::getbeata() const
+{
+  return beta_;
+}
