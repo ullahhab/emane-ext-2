@@ -1,4 +1,6 @@
 #include "emane/type.h"
+#include "emane/events/HeavyBall.inl"
+
 #inlcude <list>
 #ifndef EMANEEVENTSHEAVYBALL_HEADER_
 #define EMANEEVENTSHEAVYBALL_HEADER_
