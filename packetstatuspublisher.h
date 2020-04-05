@@ -1,3 +1,7 @@
+#ifndef EMANEHBPACKETSTATUSPUBLISHER_HEADER_
+#define EMANEHBPACKETSTATUSPUBLISHER_HEADER_
+
+
 #include "messagecomponent.h"
  
  namespace EMANE
@@ -64,3 +68,5 @@
      }
    }
  }
+
+#endif
