@@ -26,7 +26,7 @@ namespace EMANE
           //constructor without fragmantation of data
           MessageComponent(Type type, NEMId destination, const Utils::VectorIO & vectorIO);
           
-          MessageComponent(Type typem NEMId destination, constUtils::VectorIO &vectorIO, size_t fragmentIndex, size_t fragmentOffset, std::uint64_t u64FragmentSequence, bool bMore);
+          MessageComponent(Type type, NEMId destination, constUtils::VectorIO &vectorIO, size_t fragmentIndex, size_t fragmentOffset, std::uint64_t u64FragmentSequence, bool bMore);
           
           const Data & getData() const;
           NEMId getDestination() const;
