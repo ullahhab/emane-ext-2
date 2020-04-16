@@ -23,12 +23,12 @@ namespace EMANE
           
           const MessageComponents & getMessages() const;
           
-          //TODO:NEED MORE FUNCTIONS TO GET QUEUE LENGTH AND OTHER OBJECTS.
+          //TODO:NEED MORE FUNCTIONS TO GET QUEUE LENGTH AND OTHER OBJECTS.After that implement HBbasemodelmessage.inl
           
           Serialization serialize() const override;
           
           private:
-            //TODO: NEED MORE FUNCTION to get queue length and other objects
+            //TODO: NEED MORE FUNCTION to get queue length and other objects 
             
             MessageComponents messages_;
             
@@ -36,5 +36,5 @@ namespace EMANE
          }
      }
 }
-#include "basemodelmessage.inl"
+#include "HBbasemodelmessage.inl"
 #endif
