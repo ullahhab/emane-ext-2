@@ -14,7 +14,7 @@ inline
 //TODO: Non default constructor implementation.
   
 inline
-EMANE::Models::TDMA::BaseModelMessage::BaseModelMessage(const void * p, size_t len)
+EMANE::Models::HeavyBall::BaseModelMessage::BaseModelMessage(const void * p, size_t len)
 {
    EmaneMessage::TDMABaseModelMessage message;
    if(!message.PareseFromArray(p,len)){
