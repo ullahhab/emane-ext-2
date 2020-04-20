@@ -17,7 +17,7 @@ namespace Emane
                                   PlatformServiceProvider * pPlatformServiceProvider,
                                   RadioServiceProvider * pRadioServiceProvider,
                                   //TODO: SOMETHING LIKE BYTESPERSECOND FOR CHANNELSTATE
-                                  NONE)
+                                  NONE);
       
       
   NEMLayer{id,pPlatformServiceProvider}
