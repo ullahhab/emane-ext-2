@@ -20,4 +20,14 @@ namespace Emane
                                   NONE)
       
       
-   NEM
+  NEMLayer{id,pPlatformServiceProvider}
+  RadioServiceUser{pRadioServiceProvider}
+  //TODO: New variable for channel state.
+  {}
+};
+
+typedef HeavyballShimLayerImplementor * ( *createShimFucnc)(NEMId id,
+                                                           PlatformServiceProvider *p,
+                                                           RadioServiceProvider * r);
+typedef void(*derstroyShimFunc)(ShimLayerImplementor*);
+}
