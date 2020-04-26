@@ -11,6 +11,13 @@ namespace Emane
                                         
   public:
     virtual ~HeavyBallShimLayerImplementor() {}
+    
+  void processUpstreamPacket(const CommonMACHeader & header,
+                             UpstreamPacket & pkt,
+                             const ControlMessages & msgs = UpstreamTransport::empty) = 0;
+    void sendDownstreamPacket(const CommonMACheader & header,
+                               DownstreamPacket & pkt,
+                               const ControlMessages & msgs = UpstramTransport::empty);
   
   protected:
     HeavyBallShimLayerImplementor(NEMId id,
@@ -23,7 +30,14 @@ namespace Emane
   NEMLayer{id,pPlatformServiceProvider}
   RadioServiceUser{pRadioServiceProvider}
   //TODO: New variable for channel state.
-  {}
+  
+  
+  private:
+  void processUpstreamPacket(UpstramPacket & pkt, const ControlMessages & msgs);
+  void sendDownstreamPacket(DownstreamPacket & pkt,
+                            const ControlMessages & msgs = DownstreamTransport::empty);
+  
+  
 };
 
 typedef HeavyballShimLayerImplementor * ( *createShimFucnc)(NEMId id,
@@ -31,3 +45,4 @@ typedef HeavyballShimLayerImplementor * ( *createShimFucnc)(NEMId id,
                                                            RadioServiceProvider * r);
 typedef void(*derstroyShimFunc)(ShimLayerImplementor*);
 }
+#include "shimlayerimpl.inl"
