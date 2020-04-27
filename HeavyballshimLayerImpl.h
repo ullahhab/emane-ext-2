@@ -45,4 +45,4 @@ typedef HeavyballShimLayerImplementor * ( *createShimFucnc)(NEMId id,
                                                            RadioServiceProvider * r);
 typedef void(*derstroyShimFunc)(ShimLayerImplementor*);
 }
-#include "shimlayerimpl.inl"
+#include "HeavyballshimLayerImpl.inl"
