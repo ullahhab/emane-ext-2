@@ -11,17 +11,17 @@ namespace EMANE
   {
     namespace HeavyBall
     {
-      class BaseModel : public HeavyBallShimLayerImplementor,
+      class HBmodel : public HeavyBallShimLayerImplementor,
                         public SchedulerUser
       {
       public:
-        BaseModel(NEMId id,
+        HBmodel(NEMId id,
                   PlatformServiceProvider *platformSeviceProvider,
                   RadioServiceProvider * pRadioServiceProvider,
                   Scheduler * pScheduler,
                   QueueManager * pQueueManager);
                   
-       BaseModel();
+       ~HBmodel();
        
        void initialize(Registrar & registrar) overriede;
        
