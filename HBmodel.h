@@ -48,6 +48,24 @@ namespace EMANE
                                     
        void processEvent(const EnvetId &, const Serialization &) override;
        
+       //TODO: May be we don't need configurations? we can keep it for now.
        void processConfiguration(const ConfigurationUpdate & update) override;
        //TODO: DO we need this line? we don't care about schedule change do we? It doesn't effect anything with scheduler does it?
        //void notifyScheduleChange(const Frequencies & frequencies,std::unint64_t u64BandwidthHz,const Micorseconds & slotDuration, const micro
+       
+       void processSchedulerPacket(DownstreamPacket & pkt) override;
+       
+       QueueInfos getPacketQueueInfo() const override;
+       
+       //TODO: Anymore values? Declare down here.
+       
+       
+       private:
+       class Implementation;
+       std::unique_ptr<Implemenation> pImpl_;
+       };
+     }
+   }
+}    
+
+#endif
