@@ -41,4 +41,13 @@ namespace EMANE
                                   UpstreamPacket(const CommonMACHeader & pkt,
                                   const ControlMessages & msgs) override;
                                   
-       void 
+       void processDownstreamControl(const ControlMessages & msgs) override;
+       
+       void processDownstreamPacket(DownstreamPacket & pkt,
+                                    const ControlMessages & msgs) override;
+                                    
+       void processEvent(const EnvetId &, const Serialization &) override;
+       
+       void processConfiguration(const ConfigurationUpdate & update) override;
+       //TODO: DO we need this line? we don't care about schedule change do we? It doesn't effect anything with scheduler does it?
+       //void notifyScheduleChange(const Frequencies & frequencies,std::unint64_t u64BandwidthHz,const Micorseconds & slotDuration, const micro
