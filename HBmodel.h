@@ -60,6 +60,9 @@ namespace EMANE
        //TODO: Anymore values? Declare down here.
        
        
+       //TODO: Pathloss holder implementation.
+       
+       
        private:
        class Implementation;
        std::unique_ptr<Implemenation> pImpl_;
