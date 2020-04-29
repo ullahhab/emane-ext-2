@@ -33,7 +33,7 @@ namespace EMANE
        
        void stop() override;
        
-       void destroy() override;
+       void destroy() throw() override;
        
        void processUpstreamControl(const ControlMessage & msgs) override;
        
