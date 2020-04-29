@@ -7,7 +7,7 @@ namespace Emane
 {
   class HeavyBallShimLayerImplementor : public NEMLayer,
                                         public RadioServiceUser,
-                                        public channel_state
+                                      
                                         
   public:
     virtual ~HeavyBallShimLayerImplementor() {}
