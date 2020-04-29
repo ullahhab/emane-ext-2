@@ -6,7 +6,7 @@
 namespace Emane
 {
   class HeavyBallShimLayerImplementor : public NEMLayer,
-                                        public RadioServiceUser,
+                                        public RadioServiceUser
                                       
                                         
   public:
@@ -22,9 +22,9 @@ namespace Emane
   protected:
     HeavyBallShimLayerImplementor(NEMId id,
                                   PlatformServiceProvider * pPlatformServiceProvider,
-                                  RadioServiceProvider * pRadioServiceProvider,
+                                  RadioServiceProvider * pRadioServiceProvider);
                                   //TODO: SOMETHING LIKE BYTESPERSECOND FOR CHANNELSTATE
-                                  NONE);
+                                  
       
       
   NEMLayer{id,pPlatformServiceProvider}
