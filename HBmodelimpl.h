@@ -17,9 +17,9 @@
  {
    namespace Models
    {
-     namespace TDMA
+     namespace HeavyBall
      {
-       class BaseModel::Implementation : public MACLayerImplementor,
+       class BaseModel::Implementation : public HeavyBallShimLayerImplementor,
                                          public SchedulerUser
        {
        public:
