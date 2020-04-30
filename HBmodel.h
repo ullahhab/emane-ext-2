@@ -55,6 +55,8 @@ namespace EMANE
        
        void processSchedulerPacket(DownstreamPacket & pkt) override;
        
+       void processSchedulerControl(const ControlMessages & msgs) override;
+       
        QueueInfos getPacketQueueInfo() const override;
        
        //TODO: Anymore values? Declare down here.
