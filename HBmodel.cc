@@ -31,7 +31,7 @@ EMANE::Model::HeavyBall::HBmodel::initialize(Registrar & registrar)
 void
 EMANE::Models::HeavyBall::HBmodel::configure(const ConfigurationUpdate & update)
 {
-  pImple_->configure(update);
+  pImpl_->configure(update);
 }
 
 EMANE::Models::HeavyBall::HBmodel::start()
