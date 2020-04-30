@@ -19,7 +19,7 @@
    {
      namespace HeavyBall
      {
-       class BaseModel::Implementation : public HeavyBallShimLayerImplementor,
+       class HBmodel::Implementation : public HeavyBallShimLayerImplementor,
                                          public SchedulerUser
        {
        public:
