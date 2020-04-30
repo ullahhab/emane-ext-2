@@ -82,10 +82,40 @@ EMANE::Models::HeavyBall::HBmodel::processDownStreamConstrol(const ControlMessag
   pImpl_->processDownstreamConstrol(msgs);
 }
 
-EMANE::Modles::HeavyBall::HBmodel::processEvent(const EventId & eventId,
+EMANE::Models::HeavyBall::HBmodel::processEvent(const EventId & eventId,
                                                 const Serialization & serialization)
 {
   pImpl_->processEvent(eventId,serializtion);
 }
 
-                                                      
+          
+EMANE::Models::HeavyBall::HBmodel::processConfiguration(const ConfigurationUpdate & update)
+{
+  pImpl_->processConfiguration(update);
+}
+
+EMANE::Models::HeavyBall::HBmodel::notifyScheduleChange(const Frequencies & frequencies,
+                                                        std::uint64_t u64BandwidthHz,
+                                                        const Microseconds & slotDuration,
+                                                        const Microseconds & slotOverhead)
+{
+  pImpl_->notifyScheduleChange(frequencies, u64BandwidthHz, slotDuration, slotOverhead);
+}
+
+
+EMANE::Models::HeavyBall::HBmodel::processSchedulerPacket(DownstreamPacket & pkt)
+{
+  pImpl_->processSchedulerPacket(pkt);
+}
+
+
+EMANE::Models::HeavyBall::HBmodel::processSchedulerControl(const ControlMessages & msgs)
+{
+  pImpl_->processSchedulerControl(msgs);
+}
+
+EMANE::Models::TDMA::QueueInfos EMANE::Models::HeavyBall::HBmodel::getPacketQueueInfo() const
+{
+  return pImpl_->getPacketQueueInfo();
+}
+  
