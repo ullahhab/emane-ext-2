@@ -73,6 +73,8 @@
          void processSchedulerControl(const ControlMessages & msgs) override;
  
          QueueInfos getPacketQueueInfo() const override;
+         
+         NEMId getDstByMaxWeight() override; 
  
        private:
          std::unique_ptr<Scheduler> pScheduler_;
