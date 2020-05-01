@@ -431,7 +431,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
     {
       LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                               ERROR_LEVEL,
-                              "MACI %03hu HeavyBall::HBmodel::%s: MAC Registration Id %hu does not match our Id %hu, drop.",
+                              "MACI %03hu HeavyBall::HBmodel::%s: HeavyBall Registration Id %hu does not match our Id %hu, drop.",
                               id_,
                               __func__,
                               hdr.getRegistrationId(),
@@ -471,7 +471,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
                 LOGGER_VERBOSE_LOGGING_FN_VARGS(pPlatformService_->logService(),
                                                 DEBUG_LEVEL,
                                                 Controls::ReceivePropertiesControlMessageFormatter(pReceivePropertiesControlMessage),
-                                                "MACI %03hu TDMA::BaseModel::%s Receiver Properties Control Message",
+                                                "MACI %03hu HeavyBall::HBmodel::%s Receiver Properties Control Message",
                                                 id_,
                                                 __func__);
               }
@@ -485,7 +485,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
                 LOGGER_VERBOSE_LOGGING_FN_VARGS(pPlatformService_->logService(),
                                                 DEBUG_LEVEL,
                                                 Controls::FrequencyControlMessageFormatter(pFrequencyControlMessage),
-                                                "MACI %03hu TDMA::BaseModel::%s Frequency Control Message",
+                                                "MACI %03hu HeavyBall::HBmodel::%s Frequency Control Message",
                                                 id_,
                                                 __func__);
 
@@ -500,7 +500,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
         {
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   ERROR_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s: phy control "
+                                  "MACI %03hu HeavyBall::HBmodel::%s: phy control "
                                   "message not provided from src %hu, drop",
                                   id_,
                                   __func__,
@@ -565,7 +565,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s eor rx slot:"
+                                  "MACI %03hu HeavyBall::HBmodel::%s eor rx slot:"
                                   " %zu does not match sot slot: %zu, drop long",
                                   id_,
                                   __func__,
@@ -631,7 +631,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
 
                   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                           DEBUG_LEVEL,
-                                          "MACI %03hu TDMA::BaseModel::%s drop reason rx slot correct"
+                                          "MACI %03hu HeavyBall::HBmodel::%s drop reason rx slot correct"
                                           " rframe: %u rslot: %u but frequency mismatch expected: %zu got: %zu",
                                           id_,
                                           __func__,
@@ -664,7 +664,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
 
               LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                       DEBUG_LEVEL,
-                                      "MACI %03hu TDMA::BaseModel::%s drop reason rx slot correct but %s rframe: %u rslot: %u",
+                                      "MACI %03hu HeavyBall::HBmodel::%s drop reason rx slot correct but %s rframe: %u rslot: %u",
                                       id_,
                                       __func__,
                                       slotInfo.type_ == SlotInfo::Type::IDLE ?
@@ -729,7 +729,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
 
               LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                       DEBUG_LEVEL,
-                                      "MACI %03hu TDMA::BaseModel::%s drop reason slot mismatch but %s pkt: %zu now: %zu ",
+                                      "MACI %03hu HeavyBall::HBmodel::%s drop reason slot mismatch but %s pkt: %zu now: %zu ",
                                       id_,
                                       __func__,
                                       slotInfo.type_ == SlotInfo::Type::IDLE ?
@@ -746,13 +746,594 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
     {
       LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                               ERROR_LEVEL,
-                              "MACI %03hu TDMA::BaseModel::%s Packet payload length %zu does not match length prefix %zu",
+                              "MACI %03hu HeavyBall::HBmodel::%s Packet payload length %zu does not match length prefix %zu",
                               id_,
                               __func__,
                               pkt.length(),
                               len);
     }
 }
+
+
+
+void 
+EMANE::Models::HeavyBall::HBmodel::Implementation::processDownstreamControl(const ControlMessages & msgs)
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  for(const auto & pMessage : msgs)
+    {
+      LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                              DEBUG_LEVEL,
+                              "MACI %03hu HeavyBall::HBmodel::%s downstream control message id %hu",
+                              id_,
+                              __func__,
+                              pMessage->getId());
+
+      switch(pMessage->getId())
+        {
+        case Controls::FlowControlControlMessage::IDENTIFIER:
+          {
+            const auto pFlowControlControlMessage =
+              static_cast<const Controls::FlowControlControlMessage *>(pMessage);
+
+            if(bFlowControlEnable_)
+              {
+                LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                        DEBUG_LEVEL,
+                                        "MACI %03hu HeavyBall::HBmodel::%s received a flow control token request/response",
+                                        id_,
+                                        __func__);
+
+                flowControlManager_.processFlowControlMessage(pFlowControlControlMessage);
+              }
+            else
+              {
+                LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                        ERROR_LEVEL,
+                                        "MACI %03hu HeavyBall::HBmodel::%s received a flow control token request but"
+                                        " flow control is not enabled",
+                                        id_,
+                                        __func__);
+              }
+          }
+          break;
+
+        case Controls::SerializedControlMessage::IDENTIFIER:
+          {
+            const auto pSerializedControlMessage =
+              static_cast<const Controls::SerializedControlMessage *>(pMessage);
+
+            switch(pSerializedControlMessage->getSerializedId())
+              {
+              case Controls::FlowControlControlMessage::IDENTIFIER:
+                {
+                  std::unique_ptr<Controls::FlowControlControlMessage>
+                    pFlowControlControlMessage{
+                    Controls::FlowControlControlMessage::create(pSerializedControlMessage->getSerialization())};
+
+                  if(bFlowControlEnable_)
+                    {
+                      flowControlManager_.processFlowControlMessage(pFlowControlControlMessage.get());
+                    }
+                  else
+                    {
+                      LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                              ERROR_LEVEL,
+                                              "MACI %03hu HeavyBall::HBmodel::%s received a flow control token request but"
+                                              " flow control is not enabled",
+                                              id_,
+                                              __func__);
+                    }
+                }
+                break;
+              }
+          }
+        }
+    }
+}
+
+
+void EMANE::Models::HeavyBall::Implementation::processDownstreamPacket(DownstreamPacket & pkt,
+                                                                       const ControlMessages &)
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+
+  // check flow control
+  if(bFlowControlEnable_)
+    {
+      auto status = flowControlManager_.removeToken();
+
+      if(status.second == false)
+        {
+          LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                  ERROR_LEVEL,
+                                  "MACI %03hu HeavyBall::HBmodel::%s: failed to remove token, drop packet (tokens:%hu)",
+                                  id_,
+                                  __func__,
+                                  status.first);
+
+          const auto & pktInfo = pkt.getPacketInfo();
+
+          packetStatusPublisher_.outbound(pktInfo.getSource(),
+                                          pktInfo.getSource(),
+                                          pktInfo.getPriority(),
+                                          pkt.length(),
+                                          PacketStatusPublisher::OutboundAction::DROP_FLOW_CONTROL);
+
+          // drop
+          return;
+        }
+    }
+
+  std::uint8_t u8Queue{priorityToQueue(pkt.getPacketInfo().getPriority())};
+
+  size_t packetsDropped{pQueueManager_->enqueue(u8Queue,std::move(pkt))};
+
+  // drop, replace token
+  if(bFlowControlEnable_)
+    {
+      for(size_t i = 0; i < packetsDropped; ++i)
+        {
+          auto status = flowControlManager_.addToken();
+
+          if(!status.second)
+            {
+              LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                      ERROR_LEVEL,
+                                      "MACI %03hu HeavyBall::HBmodel:::%s: failed to add token (tokens:%hu)",
+                                      id_,
+                                      __func__,
+                                      status.first);
+            }
+        }
+    }
+}
+
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::processEvent(const EverntId & eventId,
+                                                                     const Serialization & serialization)
+{
+    LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  pScheduler_->processEvent(eventId,serialization);
+}
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::processConfiguration(const ConfigurationUpdate & update)
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+
+  ConfigurationUpdate schedulerConfiguration;
+
+  for(const auto & item : update)
+    {
+      if(item.first == "enablepromiscuousmode")
+        {
+          bool bPromiscuousMode{item.second[0].asBool()};
+
+          LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                  INFO_LEVEL,
+                                  "MACI %03hu HeavyBall::HBmodel::%s: %s = %s",
+                                  id_,
+                                  __func__,
+                                  item.first.c_str(),
+                                  bPromiscuousMode ? "on" : "off");
+
+          receiveManager_.setPromiscuousMode(bPromiscuousMode);
+        }
+      else
+        {
+          schedulerConfiguration.push_back(item);
+        }
+    }
+
+  pScheduler_->configure(schedulerConfiguration);
+}
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::notifyScheduleChange(const Frequencies & frequencies,
+                                                                             std::uint64_t U64BandwidthHz,
+                                                                             const Microseconds & slotDuration,
+                                                                             const Microseconds & slotOverhead)
+{
+    LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  // increment index to indicate a schedule change
+  ++u64ScheduleIndex_;
+
+  if(transmitTimedEventId_)
+    {
+      pPlatformService_->timerService().cancelTimedEvent(transmitTimedEventId_);
+      transmitTimedEventId_ = 0;
+    }
+
+  if(u64BandwidthHz_ != u64BandwidthHz || frequencies != frequencies_)
+    {
+      // only required if freq set/bandwidth differs from existing
+      pRadioModel_->sendDownstreamControl({Controls::FrequencyOfInterestControlMessage::create(u64BandwidthHz,frequencies)});
+
+      frequencies_ = frequencies;
+
+      u64BandwidthHz_ = u64BandwidthHz;
+    }
+
+  slotDuration_ = slotDuration;
+
+  slotOverhead_ = slotOverhead;
+
+  slotStatusTablePublisher_.clear();
+
+  std::tie(txSlotInfos_,
+           nextMultiFrameTime_) =
+    pScheduler_->getTxSlotInfo(Clock::now(),1);
+
+  LOGGER_VERBOSE_LOGGING_FN_VARGS(pPlatformService_->logService(),
+                                  DEBUG_LEVEL,
+                                  TxSlotInfosFormatter(txSlotInfos_),
+                                  "MACI %03hu HeavyBall::HBmodel::%s TX Slot Info",
+                                  id_,
+                                  __func__);
+
+
+
+  if(!txSlotInfos_.empty())
+    {
+      pendingTxSlotInfo_ = *txSlotInfos_.begin();
+
+      txSlotInfos_.pop_front();
+
+      transmitTimedEventId_ =
+        pPlatformService_->timerService().
+        schedule(std::bind(&Implementation::processTxOpportunity,
+                           this,
+                           u64ScheduleIndex_),
+                 pendingTxSlotInfo_.timePoint_);
+    }
+}
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::processSchedulerPacket(DownstreamPacket & pkt)
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  // enqueue into max priority queue
+  pQueueManager_->enqueue(4,std::move(pkt));
+}
+
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::processSchedulerControl(const ControlMessages & msgs)
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  pRadioModel_->sendDownstreamControl(msgs);
+}
+
+
+
+EMANE::Models::HeavyBall::QueueInfos EMANE::Models::HeavyBall::Implementation::getPacketQueueInfo() const
+{
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s",
+                          id_,
+                          __func__);
+
+  return pQueueManager_->getPacketQueueInfo();
+}
+
+
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::sendDownstreamPacket(double dSlotRemainingRatio)
+{
+  // calculate the number of bytes allowed in the slot
+  size_t bytesAvailable =
+    (slotDuration_.count() - slotOverhead_.count()) / 1000000.0 * pendingTxSlotInfo_.u64DataRatebps_ / 8.0;
+
+  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                          DEBUG_LEVEL,
+                          "MACI %03hu HeavyBall::HBmodel::%s current slot dst is %hu",
+                          id_,
+                          __func__,
+                          pendingTxSlotInfo_.destination_);
+
+  NEMId dst = getDstByMaxWeight();
+
+  auto entry = pQueueManager_->dequeue(pendingTxSlotInfo_.u8QueueId_,
+                                       bytesAvailable,
+                                       pendingTxSlotInfo_.destination_);
+
+  MessageComponents & components = std::get<0>(entry);
+  size_t totalSize{std::get<1>(entry)};
+
+  if(totalSize)
+    {
+      if(totalSize <= bytesAvailable)
+        {
+          float fSeconds{totalSize * 8.0f / pendingTxSlotInfo_.u64DataRatebps_};
+
+          Microseconds duration{std::chrono::duration_cast<Microseconds>(DoubleSeconds{fSeconds})};
+
+          // rounding error corner case mitigation
+          if(duration >= slotDuration_)
+            {
+              duration = slotDuration_ - Microseconds{1};
+            }
+
+          NEMId dst{};
+          size_t completedPackets{};
+
+          // determine how many components represent completed packets (no fragments remain) and
+          // whether to use a unicast or broadcast nem address
+          for(const auto & component : components)
+            {
+              completedPackets += !component.isMoreFragments();
+
+              // if not set, set a destination
+              if(!dst)
+                {
+                  dst = component.getDestination();
+                }
+              else if(dst != NEM_BROADCAST_MAC_ADDRESS)
+                {
+                  // if the destination is not broadcast, check to see if it matches
+                  // the destination of the current component - if not, set the NEM
+                  // broadcast address as the dst
+                  if(dst != component.getDestination())
+                    {
+                      dst = NEM_BROADCAST_MAC_ADDRESS;
+                    }
+                }
+            }
+
+
+          LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                  DEBUG_LEVEL,
+                                  "MACI %03hu HeavyBall::HBmodel::%s sending downstream to %03hu components: %zu",
+                                  id_,
+                                  __func__,
+                                  dst,
+                                  components.size());
+
+
+          if(bFlowControlEnable_ && completedPackets)
+            {
+              auto status = flowControlManager_.addToken(completedPackets);
+
+              if(!status.second)
+                {
+                  LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                          ERROR_LEVEL,
+                                          "MACI %03hu HeavyBall::HBmodel::%s: failed to add token (tokens:%hu)",
+                                          id_,
+                                          __func__,
+                                          status.first);
+
+                }
+            }
+
+          aggregationStatusPublisher_.update(components);
+
+          BaseModelMessage baseModelMessage{pendingTxSlotInfo_.u64AbsoluteSlotIndex_,
+              pendingTxSlotInfo_.u64DataRatebps_,
+              std::move(components)};
+
+          Serialization serialization{baseModelMessage.serialize()};
+
+          auto now = Clock::now();
+
+          DownstreamPacket pkt({id_,dst,0,now},serialization.c_str(),serialization.size());
+
+          pkt.prependLengthPrefixFraming(serialization.size());
+
+          pRadioModel_->sendDownstreamPacket(CommonMACHeader{REGISTERED_EMANE_MAC_TDMA,u64SequenceNumber_++},
+                                             pkt,
+                                             {Controls::FrequencyControlMessage::create(
+                                                                                        u64BandwidthHz_,
+                                                                                        {{pendingTxSlotInfo_.u64FrequencyHz_,duration}}),
+                                                 Controls::TimeStampControlMessage::create(pendingTxSlotInfo_.timePoint_),
+                                                 Controls::TransmitterControlMessage::create({{id_,pendingTxSlotInfo_.dPowerdBm_}})});
+
+          slotStatusTablePublisher_.update(pendingTxSlotInfo_.u32RelativeIndex_,
+                                           pendingTxSlotInfo_.u32RelativeFrameIndex_,
+                                           pendingTxSlotInfo_.u32RelativeSlotIndex_,
+                                           SlotStatusTablePublisher::Status::TX_GOOD,
+                                           dSlotRemainingRatio);
+
+          neighborMetricManager_.updateNeighborTxMetric(dst,
+                                                        pendingTxSlotInfo_.u64DataRatebps_,
+                                                        now);
+        }
+      else
+        {
+          LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                                  ERROR_LEVEL,
+                                  "MACI %03hu HeavyBall::HBmodel::%s queue dequeue returning %zu bytes than slot has available %zu",
+                                  id_,
+                                  __func__,
+                                  totalSize,
+                                  bytesAvailable);
+        }
+    }
+  else
+    {
+      // nothing to transmit, update the slot table to record how well
+      // schedule is being serviced
+      slotStatusTablePublisher_.update(pendingTxSlotInfo_.u32RelativeIndex_,
+                                       pendingTxSlotInfo_.u32RelativeFrameIndex_,
+                                       pendingTxSlotInfo_.u32RelativeSlotIndex_,
+                                       SlotStatusTablePublisher::Status::TX_GOOD,
+                                       dSlotRemainingRatio);
+    }
+}
+
+void EMANE::Models::HeavyBall::HBmodel::Implementation::processTxOpportunity(std::uint64_t u64ScheduleIndex)
+{
+  // check for scheduled timer functor after new schedule, if so disregard
+  if(u64ScheduleIndex != u64ScheduleIndex_)
+    {
+      LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                              ERROR_LEVEL,
+                              "MACI %03hu HeavyBall::HBmodel::%s old schedule tx opportunity found"
+                              " scheduled index: %zu current index: %zu",
+                              id_,
+                              __func__,
+                              u64ScheduleIndex,
+                              u64ScheduleIndex_);
+      return;
+    }
+
+  auto now = Clock::now();
+
+  auto nowSlotInfo = pScheduler_->getSlotInfo(now);
+
+  Microseconds timeRemainingInSlot{slotDuration_ -
+      std::chrono::duration_cast<Microseconds>(now -
+                                               pendingTxSlotInfo_.timePoint_)};
+  double dSlotRemainingRatio =
+    timeRemainingInSlot.count() / static_cast<double>(slotDuration_.count());
+
+  if(nowSlotInfo.u64AbsoluteSlotIndex_ == pendingTxSlotInfo_.u64AbsoluteSlotIndex_)
+    {
+      // transmit in this slot
+      sendDownstreamPacket(dSlotRemainingRatio);
+    }
+  else
+    {
+      slotStatusTablePublisher_.update(pendingTxSlotInfo_.u32RelativeIndex_,
+                                       pendingTxSlotInfo_.u32RelativeFrameIndex_,
+                                       pendingTxSlotInfo_.u32RelativeSlotIndex_,
+                                       SlotStatusTablePublisher::Status::TX_MISSED,
+                                       dSlotRemainingRatio);
+    }
+
+
+  // if necessary request more tx opportunities
+  if(txSlotInfos_.empty())
+    {
+      // request more slots
+      std::tie(txSlotInfos_,
+               nextMultiFrameTime_) =
+        pScheduler_->getTxSlotInfo(nextMultiFrameTime_,1);
+    }
+
+  bool bFoundTXSlot = {};
+
+  // find the next transmit opportunity
+  while(!txSlotInfos_.empty() && !bFoundTXSlot)
+    {
+      // it might be necessary to request more opportunies if we
+      // are behind and have many tx opportunities that have past
+      while(!txSlotInfos_.empty())
+        {
+          pendingTxSlotInfo_ = *txSlotInfos_.begin();
+
+          txSlotInfos_.pop_front();
+
+          if(pendingTxSlotInfo_.u64AbsoluteSlotIndex_ > nowSlotInfo.u64AbsoluteSlotIndex_)
+            {
+              // need to schedule processing in the future
+
+              transmitTimedEventId_ =
+                pPlatformService_->timerService().
+                schedule(std::bind(&Implementation::processTxOpportunity,
+                                   this,
+                                   u64ScheduleIndex_),
+                         pendingTxSlotInfo_.timePoint_);
+
+              bFoundTXSlot = true;
+              break;
+            }
+          else if(pendingTxSlotInfo_.u64AbsoluteSlotIndex_ < nowSlotInfo.u64AbsoluteSlotIndex_)
+            {
+              // missed opportunity
+              double dSlotRemainingRatio = \
+                std::chrono::duration_cast<Microseconds>(pendingTxSlotInfo_.timePoint_ - now).count() /
+                static_cast<double>(slotDuration_.count());
+
+              // blown tx opportunity
+              slotStatusTablePublisher_.update(pendingTxSlotInfo_.u32RelativeIndex_,
+                                               pendingTxSlotInfo_.u32RelativeFrameIndex_,
+                                               pendingTxSlotInfo_.u32RelativeSlotIndex_,
+                                               SlotStatusTablePublisher::Status::TX_MISSED,
+                                               dSlotRemainingRatio);
+            }
+          else
+            {
+              // send the packet
+              timeRemainingInSlot = slotDuration_ -
+                std::chrono::duration_cast<Microseconds>(now -
+                                                         pendingTxSlotInfo_.timePoint_);
+
+
+              double dSlotRemainingRatio =
+                timeRemainingInSlot.count() / static_cast<double>(slotDuration_.count());
+
+
+              sendDownstreamPacket(dSlotRemainingRatio);
+            }
+        }
+
+      // if we are out of slots
+      if(txSlotInfos_.empty())
+        {
+          // request more slots
+          std::tie(txSlotInfos_,
+                   nextMultiFrameTime_) =
+            pScheduler_->getTxSlotInfo(nextMultiFrameTime_,1);
+        }
+    }
+
+  return;
+}
+//TODO:: Thinking about this implementation maybe we could avoid some things.
+EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeight()
+{
+  //TODO:: Yet to be implemented
+  
+  //TODO:: declare new files to use function getDstQueueLength();
+  
+  
+}
+  
+
+
+
+
+
+
 
 
 
