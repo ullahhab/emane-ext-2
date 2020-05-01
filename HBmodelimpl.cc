@@ -329,7 +329,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::postStart()
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BaseModel::%s",
+                          "MACI %03hu HeavyBall::HBmodel::%s",
                           id_,
                           __func__);
 
@@ -420,7 +420,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
 
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BaseModel::%s",
+                          "MACI %03hu HeavyBall::HBmodel::%s",
                           id_,
                           __func__);
 
@@ -431,7 +431,7 @@ EMANE::Models::HeavyBall::HBmodel::Implementation::processUpstreamPacket(const C
     {
       LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                               ERROR_LEVEL,
-                              "MACI %03hu TDMA::BaseModel::%s: MAC Registration Id %hu does not match our Id %hu, drop.",
+                              "MACI %03hu HeavyBall::HBmodel::%s: MAC Registration Id %hu does not match our Id %hu, drop.",
                               id_,
                               __func__,
                               hdr.getRegistrationId(),
