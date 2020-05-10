@@ -4,6 +4,9 @@
 #include "emane/events/slotstructure.h"
 
 
+#define EMANE_EVENT_HB_SCHEDULE 106
+
+
 
 
 
