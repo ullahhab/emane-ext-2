@@ -17,11 +17,16 @@ namespace EMANE
     {
     public:
     using weights = std::set<unit64_t>;
+    using frequencies = std::set<uint64_t>;
+    
     HBScheduleEvent(const Serialization & serialization);
     const weights & getWeights() const;
+    const Slotinfos & getSlotInfos() const;
+    const Frequencies & getFrequencies() const;
     float betas & getBetas() const;
     bool isSlotStructured();
     std::pair<const SlotStructure &, bool> getSlotStructure() const;
+    enum {IDENTIFIER = EMANE_EVENT_HB_SCHEDULE};
     private:
       class Implementation;
       std::unique_ptr<Implementation> pImpl_;
