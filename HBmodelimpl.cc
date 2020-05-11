@@ -1324,12 +1324,12 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   //TODO:: Yet to be implemented
   
   //TODO:: declare new files to use function getDstQueueLength();
-    auto qls = pQueueManager_->getDestQueueLength(0);
+  auto qls = pQueueManager_->getDestQueueLength(0);
   for (auto it=qls.begin(); it!=qls.end(); ++it) 
   {
     LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                             DEBUG_LEVEL,
-                            "MACI %03hu TDMA::BaseModel::%s Queue %hu has size %zu",
+                            "MACI %03hu HeavyBall::HBModel::%s Queue %hu has size %zu",
                             id_,
                             __func__,
                             it->first,
@@ -1369,7 +1369,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   {
     LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                             DEBUG_LEVEL,
-                            "MACI %03hu TDMA::BaseModel::%s pathloss not initialized yet!",
+                            "MACI %03hu HeavyBall::HBModel::%s pathloss not initialized yet!",
                             id_,
                             __func__);
   }
