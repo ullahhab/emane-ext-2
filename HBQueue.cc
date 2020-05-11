@@ -1,4 +1,5 @@
 #include "HBQueue.h"
+#include "emane/models/tdma/queue.cc"
 
 EMANE::Models::HeavyBall::Queue::getDestQueueLength()
 {
