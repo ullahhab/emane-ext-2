@@ -37,7 +37,7 @@ namespace EMANE
 
         size_t enqueue(std::uint8_t u8QueueIndex, DownstreamPacket && pkt) override;
 
-        std::tuple<EMANE::Models::TDMA::MessageComponents,
+        std::tuple<EMANE::Models::HeavyBall::MessageComponents,
                    size_t>
           dequeue(std::uint8_t u8QueueIndex,
                   size_t length,
