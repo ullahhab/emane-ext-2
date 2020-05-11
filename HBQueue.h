@@ -3,7 +3,7 @@
 
 #include "emane/types.h"
 #include "emane/downstreampacket.h"
-#include "emane/models/tdma/messagecomponent.h"
+#include "emane/models/HeavyBall/messagecomponent.h"
 
 #include <cstdint>
 #include <map>
