@@ -1,4 +1,4 @@
-#include "queue.h"
+#include "HBQueue.h"
 
 EMANE::Models::HeavyBall::Queue::Queue():
   u16QueueDepth_{},
