@@ -89,7 +89,7 @@ std::pair<std::unique_ptr<EMANE::DownstreamPacket>,bool>
   return {std::move(pDroppedPacket),bDroppedPacket};
 }
 
-std::tuple<EMANE::Models::TDMA::MessageComponents,
+std::tuple<EMANE::Models::HeavyBall::MessageComponents,
            size_t,
            std::list<std::unique_ptr<EMANE::DownstreamPacket>>>
   EMANE::Models::HeavyBall::Queue::dequeue(size_t requestedBytes, NEMId destination,bool bDrop)
