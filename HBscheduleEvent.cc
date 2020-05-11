@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <tuple>
-
+////TODO::Misss matching close bracket somewhere check for it and also create getslotinfo and all other functions missing.
 class EMANE::Events::HBScheduleEvent::Implementation
 {
   Implementation(const Serializaion & serialization):
