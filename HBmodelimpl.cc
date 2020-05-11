@@ -1324,9 +1324,59 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   //TODO:: Yet to be implemented
   
   //TODO:: declare new files to use function getDstQueueLength();
-  
-  
+    auto qls = pQueueManager_->getDestQueueLength(0);
+  for (auto it=qls.begin(); it!=qls.end(); ++it) 
+  {
+    LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                            DEBUG_LEVEL,
+                            "MACI %03hu TDMA::BaseModel::%s Queue %hu has size %zu",
+                            id_,
+                            __func__,
+                            it->first,
+                            it->second);
+  }
+
+  EMANE::NEMId nemId{0};
+  double maxScore = 0;
+
+  if (EMANE::Utils::initialized) 
+  {
+    EMANE::Events::Pathlosses pe = EMANE::Utils::pathlossesHolder;
+    for (auto const& it: pe)
+    {
+      auto ql = qls.find(it.getNEMId());
+      if (ql == qls.end())
+      {
+        continue;
+      }
+      double score = EMANE::Utils::DB_TO_MILLIWATT(0-it.getForwardPathlossdB()) * ql->second;
+      if (score > maxScore)
+      {
+        nemId = it.getNEMId();
+        maxScore = score;
+      }
+      LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                              DEBUG_LEVEL,
+                              "MACI %03hu TDMA::BaseModel::%s pathloss of %hu is %f, and score: %f!",
+                              id_,
+                              __func__,
+                              it.getNEMId(),
+                              it.getForwardPathlossdB(),
+                              score);
+    }         
+  }
+  else
+  {
+    LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
+                            DEBUG_LEVEL,
+                            "MACI %03hu TDMA::BaseModel::%s pathloss not initialized yet!",
+                            id_,
+                            __func__);
+  }
+  return nemId;
+
 }
+  
   
 
 
