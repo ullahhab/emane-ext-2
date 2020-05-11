@@ -310,7 +310,7 @@ std::tuple<EMANE::Models::TDMA::MessageComponents,
   return std::make_tuple(components,totalBytes,std::move(dropped));
 }
 
-std::pair<EMANE::Models::TDMA::MessageComponent,size_t>
+std::pair<EMANE::Models::HeavyBall::MessageComponent,size_t>
 EMANE::Models::HeavyBall::Queue::fragmentPacket(DownstreamPacket * pPacket,
                                            MetaInfo * pMetaInfo,
                                            std::uint64_t u64FragmentSequence,
