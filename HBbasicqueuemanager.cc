@@ -8,7 +8,7 @@ namespace
   const int MAX_QUEUES = 5;
 }
 
-class EMANE::Models::TDMA::BasicQueueManager::Implementation
+class EMANE::Models::HeavyBall::BasicQueueManager::Implementation
 {
 public:
   bool bAggregationEnable_{};
@@ -20,18 +20,18 @@ public:
 };
 
 
-EMANE::Models::TDMA::BasicQueueManager::BasicQueueManager(NEMId id,
+EMANE::Models::HeavyBall::BasicQueueManager::BasicQueueManager(NEMId id,
                                                           PlatformServiceProvider * pPlatformServiceProvider):
   QueueManager{id,pPlatformServiceProvider},
   pImpl_{new Implementation{}}{}
 
-EMANE::Models::TDMA::BasicQueueManager::~BasicQueueManager(){}
+EMANE::Models::HeavyBall::BasicQueueManager::~BasicQueueManager(){}
 
-void EMANE::Models::TDMA::BasicQueueManager::initialize(Registrar & registrar)
+void EMANE::Models::HeavyBall::BasicQueueManager::initialize(Registrar & registrar)
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 
@@ -83,11 +83,11 @@ void EMANE::Models::TDMA::BasicQueueManager::initialize(Registrar & registrar)
 
 }
 
-void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate & update)
+void EMANE::Models::HeavyBall::BasicQueueManager::configure(const ConfigurationUpdate & update)
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 
@@ -101,7 +101,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   INFO_LEVEL,
-                                  "MACI %03hu TDMA::BasicQueueManager::%s: %s = %hu",
+                                  "MACI %03hu HeavyBall::BasicQueueManager::%s: %s = %hu",
                                   id_,
                                   __func__,
                                   item.first.c_str(),
@@ -113,7 +113,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   INFO_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s: %s = %s",
+                                  "MACI %03hu HeavyBall::BaseModel::%s: %s = %s",
                                   id_,
                                   __func__,
                                   item.first.c_str(),
@@ -125,7 +125,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   INFO_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s: %s = %s",
+                                  "MACI %03hu HeavyBall::BaseModel::%s: %s = %s",
                                   id_,
                                   __func__,
                                   item.first.c_str(),
@@ -137,7 +137,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   INFO_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s: %s = %s",
+                                  "MACI %03hu HeavyBall::BaseModel::%s: %s = %s",
                                   id_,
                                   __func__,
                                   item.first.c_str(),
@@ -149,7 +149,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   INFO_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s: %s = %lf",
+                                  "MACI %03hu HeavyBall::BaseModel::%s: %s = %lf",
                                   id_,
                                   __func__,
                                   item.first.c_str(),
@@ -158,7 +158,7 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
       else
         {
-          throw makeException<ConfigureException>("TDMA::BasicQueueManager: "
+          throw makeException<ConfigureException>("HeavyBall::BasicQueueManager: "
                                                    "Unexpected configuration item %s",
                                                    item.first.c_str());
         }
@@ -193,43 +193,43 @@ void EMANE::Models::TDMA::BasicQueueManager::configure(const ConfigurationUpdate
 
 }
 
-void EMANE::Models::TDMA::BasicQueueManager::start()
+void EMANE::Models::Heavyball::BasicQueueManager::start()
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 }
 
-void EMANE::Models::TDMA::BasicQueueManager::postStart()
+void EMANE::Models::HeavyBall::BasicQueueManager::postStart()
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 }
 
-void EMANE::Models::TDMA::BasicQueueManager::stop()
+void EMANE::Models::HeavyBall::BasicQueueManager::stop()
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 }
 
-void EMANE::Models::TDMA::BasicQueueManager::destroy() throw()
+void EMANE::Models::HeavyBall::BasicQueueManager::destroy() throw()
 {
   LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
-                          "MACI %03hu TDMA::BasicQueueManager::%s",
+                          "MACI %03hu HeavyBall::BasicQueueManager::%s",
                           id_,
                           __func__);
 }
 
-size_t EMANE::Models::TDMA::BasicQueueManager::enqueue(std::uint8_t u8QueueIndex,
+size_t EMANE::Models::HeavyBall::BasicQueueManager::enqueue(std::uint8_t u8QueueIndex,
                                                      DownstreamPacket && pkt)
 {
   size_t packetsDropped{};
@@ -261,8 +261,8 @@ size_t EMANE::Models::TDMA::BasicQueueManager::enqueue(std::uint8_t u8QueueIndex
   return packetsDropped;
 }
 
-std::tuple<EMANE::Models::TDMA::MessageComponents,size_t>
-EMANE::Models::TDMA::BasicQueueManager::dequeue(std::uint8_t u8QueueIndex,
+std::tuple<EMANE::Models::HeavyBall::MessageComponents,size_t>
+EMANE::Models::HeavyBall::BasicQueueManager::dequeue(std::uint8_t u8QueueIndex,
                                                 size_t requestedBytes,
                                                 NEMId destination)
 {
@@ -357,7 +357,7 @@ EMANE::Models::TDMA::BasicQueueManager::dequeue(std::uint8_t u8QueueIndex,
 }
 
 EMANE::Models::TDMA::QueueInfos
-EMANE::Models::TDMA::BasicQueueManager::getPacketQueueInfo() const
+EMANE::Models::HeavyBall::BasicQueueManager::getPacketQueueInfo() const
 {
   QueueInfos queueInfos{};
 
@@ -373,7 +373,7 @@ EMANE::Models::TDMA::BasicQueueManager::getPacketQueueInfo() const
   return queueInfos;
 }
 
-std::map<std::uint64_t,size_t> EMANE::Models::TDMA::BasicQueueManager::getDestQueueLength(int priority)
+std::map<std::uint64_t,size_t> EMANE::Models::HeavyBall::BasicQueueManager::getDestQueueLength(int priority)
 {
   return pImpl_->queues_[priority].getDestQueueLength();
 }
