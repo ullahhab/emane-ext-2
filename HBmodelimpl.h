@@ -8,10 +8,10 @@
  #include "emane/models/tdma/scheduler.h"
  #include "emane/models/tdma/queuemanager.h"
  
- #include "slotstatustablepublisher.h"
- #include "receivemanager.h"
- #include "packetstatuspublisherimpl.h"
- #include "aggregationstatuspublisher.h"
+ #include "emane/models/tdma/slotstatustablepublisher.h"
+ #include "emane/models/tdma/receivemanager.h"
+ #include "emane/models/tdma/packetstatuspublisherimpl.h"
+ #include "emane/models/tdma/aggregationstatuspublisher.h"
  
  namespace EMANE
  {
