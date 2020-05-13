@@ -17,7 +17,7 @@
 
 #include "emane/models/tdma/txslotinfosformatter.h"
 #include "HBbasemodelmessage.h"
-#include "emane/models.tdma/priority.h"
+#include "emane/models/tdma/priority.h"
 
 
 
