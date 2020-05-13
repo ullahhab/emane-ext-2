@@ -3,7 +3,7 @@
 
 #include "heavyballshimLayerImpl.h"
 #include "emane/models/HeavyBall/scheduler.h"
-#inlcude "emane/models/tdma/queuemanager.h"
+#inlcude "HBqueuemanager.h"
 
 namespace EMANE
 {
