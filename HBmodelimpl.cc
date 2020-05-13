@@ -1357,7 +1357,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
       }
       LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                               DEBUG_LEVEL,
-                              "MACI %03hu TDMA::BaseModel::%s pathloss of %hu is %f, and score: %f!",
+                              "MACI %03hu HeavyBall::HBModel::%s pathloss of %hu is %f, and score: %f!",
                               id_,
                               __func__,
                               it.getNEMId(),
