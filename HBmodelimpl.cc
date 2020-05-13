@@ -1,6 +1,6 @@
 #include "HBmodelimpl.h"
-#include "basemodelimpl.h"
-#include "emane/models/tdma/queuemanager.h"
+#include "HBbasemodelimpl.h"
+#include "HBqueuemanager.h"
 
 #include "emane/configureexception.h"
 #include "emane/controls/frequencyofinterestcontrolmessage.h"
