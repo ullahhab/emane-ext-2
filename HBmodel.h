@@ -63,11 +63,7 @@ namespace EMANE
        
        QueueInfos getPacketQueueInfo() const override;
        
-       //TODO: Anymore values? Declare down here.
-       
-       
-       //TODO: Pathloss holder implementation.
-       
+
        
        private:
        class Implementation;
