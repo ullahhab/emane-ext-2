@@ -101,6 +101,15 @@
          FlowControlManager flowControlManager_;
          std::uint64_t u64ScheduleIndex_;
          AggregationStatusPublisher aggregationStatusPublisher_;
+         std::uint64_t counter_;
+         std::uint64_t lasQueueLength_[10];
+         std::uint64_t lastLastQueueLength_[10];
+         double lastWeight_[10];
+         double lastLastWeight_[10];
+         double weightT_[10];
+         
+         float BETA_=0.1;
+         
  
          void sendDownstreamPacket(double dSlotRemainingRatio);
  
