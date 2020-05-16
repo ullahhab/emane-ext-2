@@ -954,7 +954,8 @@ void EMANE::Models::HeavyBall::HBmodel::Implementation::processConfiguration(con
 void EMANE::Models::HeavyBall::HBmodel::Implementation::notifyScheduleChange(const Frequencies & frequencies,
                                                                              std::uint64_t U64BandwidthHz,
                                                                              const Microseconds & slotDuration,
-                                                                             const Microseconds & slotOverhead)
+                                                                             const Microseconds & slotOverhead
+                                                                             float beat)
 {
     LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                           DEBUG_LEVEL,
@@ -964,6 +965,7 @@ void EMANE::Models::HeavyBall::HBmodel::Implementation::notifyScheduleChange(con
 
   // increment index to indicate a schedule change
   ++u64ScheduleIndex_;
+  BETA_ = beta;
 
   if(transmitTimedEventId_)
     {
