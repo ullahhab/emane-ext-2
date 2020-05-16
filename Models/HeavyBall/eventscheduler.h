@@ -1,8 +1,13 @@
 #ifndef EMANEHBSCHEDULER_HEADER_
 define EMANEHBSCHEDULER_HEADER_
-
-#include "scheduler.h"
+//TODO: Need to change!!!
+#include "emane/models/scheduler.h"
 //TODO::RESEARCH POINT: NEED MORE ITEM TO SCHEDULE USER.
+#include "emane/events/slotinfo.h"
+#include "emane/events/slotstructure.h"
+#include "emane/statisticnumeric.h"
+#include "eventtablepublisher.h"
+#include "slotter.h"
 
 
 
