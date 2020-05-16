@@ -1,4 +1,5 @@
 #include "HBscheduleEvent.h"
+#include "HBscheduleevent.pb.h"
 
 #include <cstdint>
 #include <tuple>
@@ -255,26 +256,72 @@ class EMANE::Events::HBScheduleEvent::Implementation
 
       
       
+Emane::Events::HBScheduleEvent::HBScheduleEvent(const Serilization & serialization):
+   pImpl_{new Impelementation{serialization}}{}
       
-      Emane::Events::HBScheduleEvent::HBScheduleEvent(const Serilization & serialization):
-      pImpl_{new Impelementation{serialization}}{}
-      
-      EMANE::Events::HBScheduleEvent::~HBScheduleEvent(){}
-      
-      
-      bool EMANE::Event::HBScheduleEvent::isSlotStructured(){
-        return pImpl->isSlotStructured();
-      }
+EMANE::Events::HBScheduleEvent::~HBScheduleEvent(){}
       
       
-     const EMANE::Events::HBScheduleEvent::weights & EMANE::Events::HBScheduleEvent::getWeights() const
-     {
-       return pImpl_->getWeights();
-     }
+bool EMANE::Event::HBScheduleEvent::isSlotStructured()
+{
+  return pImpl->isSlotStructured();
+}
+      
+      
+const EMANE::Events::HBScheduleEvent::weights & EMANE::Events::HBScheduleEvent::getWeights() const
+{
+  return pImpl_->getWeights();
+}
      
-     const EMANE::Events::HBScheduleEvent::betas & EMANE::Events::HBScheduleEvent::getBetas() const {
-       return pImpl->getBetas();
-     }
-       
+const EMANE::Events::HBScheduleEvent::betas & EMANE::Events::HBScheduleEvent::getBetas() const 
+{
+  return pImpl->getBetas();
+}
         
-      
+const SlotInfos & getSlotInfos() const
+{
+  return slotInfos_;
+}
+
+const Frequencies & getFrequencies() const
+{
+  return frequencies_;
+}
+
+std::pair<const SlotStructure &,bool> getSlotStructure() const
+{
+  return {structure_,bHasStructure_};
+}
+
+private:
+  SlotInfos slotInfos_;
+  Frequencies frequencies_;
+  SlotStructure structure_;
+  bool bHasStructure_;
+};
+
+
+EMANE::Events::HBScheduleEvent::HBScheduleEvent(const Serialization & serialization):
+  Event{IDENTIFIER},
+  pImpl_{new Implementation{serialization}}{}
+
+EMANE::Events::HBScheduleEvent::~HBScheduleEvent(){}
+
+const EMANE::Events::SlotInfos & EMANE::Events::HBScheduleEvent::getSlotInfos() const
+{
+  return pImpl_->getSlotInfos();
+}
+
+
+const EMANE::Events::HBScheduleEvent::Frequencies &
+EMANE::Events::HBScheduleEvent::getFrequencies() const
+{
+  return pImpl_->getFrequencies();
+}
+
+std::pair<const EMANE::Events::SlotStructure &,bool>
+EMANE::Events::TDMAScheduleEvent::getSlotStructure() const
+{
+  return  pImpl_->getSlotStructure();
+}
+
