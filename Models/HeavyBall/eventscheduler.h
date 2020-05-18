@@ -46,10 +46,20 @@ namespace EMANE
         
         
         private:
-        //TODO: Values would go here AGAIN NOT SURE WHAT NEED TO RESEARCH
-        
-        
-        //TODO: FLUSHSCHEDULE???   src/models/mac/tdma/eventscheduler/eventscheduler.h
+        Events::SlotInfos slotInfos_;
+        Events::SlotStructure structure_;
+        EventTablePublisher eventTablePublisher_;
+        Slotter slotter_;
+        mutable bool bWaitingFirstTxSlotInfoRequest_;
+        Frequencies frequencies_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleRejectSlotIndexOutOfRange_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleRejectFrameIndexOutOfRange_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleRejectUpdateBeforeFull_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleRejectOther_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleFullAccept_;
+        StatisticNumeric<std::uint64_t> * pNumScheduleUpdateAccept_;
+
+        void flushSchedule();
         
         
         
