@@ -22,6 +22,8 @@ namespace EMANE
     using weights = std::set<unit64_t>;
     using frequencies = std::set<uint64_t>;
     
+    ~HBScheduleEvent();
+    
     HBScheduleEvent(const Serialization & serialization);
     const weights & getWeights() const;
     const Slotinfos & getSlotInfos() const;
