@@ -1321,7 +1321,7 @@ void EMANE::Models::HeavyBall::HBmodel::Implementation::processTxOpportunity(std
   return;
 }
 //TODO:: Thinking about this implementation maybe we could avoid some things.
-EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeight()
+EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeight(UpstreamPacket & pkt)
 {
   //TODO:: Yet to be implemented
   
@@ -1329,7 +1329,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   const PacketInfo & pktInfo{pkt.getPacketInfo()};
   
   
-  auto qls = pQueueManager_->getDestQueueLength(pkt.getPriority);
+  auto qls = pQueueManager_->getDestQueueLength(pktInfo.getPriority);
   for (auto it=qls.begin(); it!=qls.end(); ++it) 
   {
     if (65535 == it->first && it->second > 2) return 65535; 
