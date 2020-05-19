@@ -1442,21 +1442,21 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
         if(send(sock_fd, msg.c_str(), msg.size(), 0) == -1) {
             LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                         DEBUG_LEVEL,
-                        "MACI %03hu TDMA::BaseModel::%s Send Failed!",
+                        "MACI %03hu HeavyBall::BaseModel::%s Send Failed!",
                         id_,
                         __func__);
         }
         if((recvbytes=recv(sock_fd, buf, MAXDATASIZE, 0)) == -1) {  
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s Connection recv Failed!",
+                                  "MACI %03hu HeavyBall::BaseModel::%s Connection recv Failed!",
                                   id_,
                                   __func__);
         }
         buf[recvbytes] = '\0';
         LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s \"%s\" recived!",
+                                  "MACI %03hu HeavyBall::BaseModel::%s \"%s\" recived!",
                                   id_,
                                   __func__,
                                   buf);
