@@ -34,8 +34,8 @@ Implementation(NEMId id,
                RadioServiceProvider * pRadioServiceProvider,
                Scheduler * pScheduler,
                QueueManager * pQueueManager,
-               MACLayerImplementor * pRadioModel):
-  MACLayerImplementor{id,pPlatformServiceProvider,pRadioServiceProvider},
+               HeavyBallShimLayerImplementor * pRadioModel):
+  HeavyBallShimLayerImplementor{id,pPlatformServiceProvider,pRadioServiceProvider},
   pScheduler_{pScheduler},
   pQueueManager_{pQueueManager},
   pRadioModel_{pRadioModel},
