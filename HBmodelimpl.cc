@@ -1385,7 +1385,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
       }
       LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                               DEBUG_LEVEL,
-                              "MACI %03hu TDMA::BaseModel::%s dest: %hu, queuelength: %zu, weight: %f, snr: %f, and score: %f!",
+                              "MACI %03hu HeavyBall::HBModel::%s dest: %hu, queuelength: %zu, weight: %f, snr: %f, and score: %f!",
                               id_,
                               __func__,
                               it.getNEMId(),
@@ -1414,7 +1414,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
         if ((sock_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s Socket creation error!",
+                                  "MACI %03hu HeavyBall::HBModel::%s Socket creation error!",
                                   id_,
                                   __func__);
         }
@@ -1431,7 +1431,7 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
         if(connect(sock_fd, (struct sockaddr *)&server_addr, sizeof(struct sockaddr)) == -1) {
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu TDMA::BaseModel::%s Connection Failed!",
+                                  "MACI %03hu HeavyBall::BaseModel::%s Connection Failed!",
                                   id_,
                                   __func__);
           close(sock_fd);  
@@ -1442,21 +1442,21 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
         if(send(sock_fd, msg.c_str(), msg.size(), 0) == -1) {
             LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                         DEBUG_LEVEL,
-                        "MACI %03hu HeavyBall::BaseModel::%s Send Failed!",
+                        "MACI %03hu HeavyBall::HBModel::%s Send Failed!",
                         id_,
                         __func__);
         }
         if((recvbytes=recv(sock_fd, buf, MAXDATASIZE, 0)) == -1) {  
           LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu HeavyBall::BaseModel::%s Connection recv Failed!",
+                                  "MACI %03hu HeavyBall::HBModel::%s Connection recv Failed!",
                                   id_,
                                   __func__);
         }
         buf[recvbytes] = '\0';
         LOGGER_STANDARD_LOGGING(pPlatformService_->logService(),
                                   DEBUG_LEVEL,
-                                  "MACI %03hu HeavyBall::BaseModel::%s \"%s\" recived!",
+                                  "MACI %03hu HeavyBall::HBModel::%s \"%s\" recived!",
                                   id_,
                                   __func__,
                                   buf);
