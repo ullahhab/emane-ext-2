@@ -1326,7 +1326,6 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   //TODO:: Yet to be implemented
   
   //TODO:: declare new files to use function getDstQueueLength();
-{
 
   auto qls = pQueueManager_->getDestQueueLength(0);
   for (auto it=qls.begin(); it!=qls.end(); ++it) 
