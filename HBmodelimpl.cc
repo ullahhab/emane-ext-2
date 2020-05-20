@@ -1321,14 +1321,14 @@ void EMANE::Models::HeavyBall::HBmodel::Implementation::processTxOpportunity(std
   return;
 }
 //TODO:: Thinking about this implementation maybe we could avoid some things.
-EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeight(UpstreamPacket & pkt)
+EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeight()
 {
   //TODO:: Yet to be implemented
   
   //TODO:: declare new files to use function getDstQueueLength();
   
   
-  auto qls = pQueueManager_->getPacketQueueInfo();
+  auto qls = pQueueManager_->getDstQueueLength();
   
   EMANE::NEMId nemId{0};
   double maxScore = 0;
