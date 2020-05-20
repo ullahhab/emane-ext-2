@@ -1326,15 +1326,10 @@ EMANE::NEMId EMANE::Models::HeavyBall::HBmodel::Implementation::getDstByMaxWeigh
   //TODO:: Yet to be implemented
   
   //TODO:: declare new files to use function getDstQueueLength();
-  const PacketInfo & pktInfo{pkt.getPacketInfo()};
   
   
-  auto qls = pQueueManager_->getDestQueueLength(pktInfo.getPriority);
-  for (auto it=qls.begin(); it!=qls.end(); ++it) 
-  {
-    if (65535 == it->first && it->second > 2) return 65535; 
-  }
-
+  auto qls = pQueueManager_->getPacketQueueInfo();
+  
   EMANE::NEMId nemId{0};
   double maxScore = 0;
 
