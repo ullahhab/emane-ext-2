@@ -373,7 +373,7 @@ EMANE::Models::HeavyBall::BasicQueueManager::getPacketQueueInfo() const
   return queueInfos;
 }
 
-std::map<std::uint64_t,size_t> EMANE::Models::HeavyBall::BasicQueueManager::getDestQueueLength(int priority)
+std::map<std::uint64_t,size_t> EMANE::Models::HeavyBall::BasicQueueManager::getDestQueueLength()
 {
   return pImpl_->queues_.getDestQueueLength();
 }
