@@ -1,0 +1,35 @@
+syntax = "proto2"
+
+package EMANEMessage;
+
+option optimize_for = SPEED;
+
+message HBScheduleEvent
+{
+  message Frame
+  {
+    message Slot
+    {
+      enum Type
+      {
+        SLOT_TX = 1;
+        SLOT_RX = 2;
+        SLOT_IDLE = 3;
+       }
+       
+     message Tx
+     {
+        optional uint64 frequencyHz = 1;
+        optional uint64 dataRatebps = 2;
+        optional uint32 serviceClass = 3;
+        optional double powerdBm = 4;
+        optional uint32 destinaiton = 5;
+      }
+      
+      message Rx
+      {
+        optional uint64 frequencyHz = 1;
+      }
+     
+      
+       
