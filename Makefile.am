@@ -43,5 +43,29 @@ HBmodelimpl.cc                    \
 HBqueuemanager.h                  \
 HBscheduleEvent.h                 \
 HBscheduleuser.h                  \
-HBscheduleevent.py                \
+HeavyBall.h                       \
+HeavyBall.inl                     \
+HeavyballshimLayerimpl.h          \
+HeavyballshimLayerimpl.inl        \
+messageComponent.h                \
+messageComponent.inl              \
+packerstatuspublisher.h           \
+packetstatuspublisherimpl.h       \
+pathlossholder.h                  
+
+
+nodit_libHBbase_la_SOURCES =      \
+//TODO: some files that we need for 
+
+
+BUILT_SOURCES =                   \
+$(nodist_libHBbase_la_SOURCES)
+
+
+clean-local:
+      rm-f $(BUILT_SOURCES)
+      
+      
+hbbasemodelmessage.pb.cc hbbasemodelmessage.pb.h:  hbbasemodelmessage.proto
+           protoc -I=. --cpp_out=. $<
 
