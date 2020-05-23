@@ -31,5 +31,37 @@ message HBScheduleEvent
         optional uint64 frequencyHz = 1;
       }
      
+     
+     required uint32 index = 1;
+     required Type type =2;
+     optional Tx tx = 3;
+     optional Rx rx =4;
+     }
+     
+     required uint32 index = 1;
+     optional uint64 frequencyHz = 2;
+     optional uint64 dataRatebps = 3;
+     optional uint32 serviceClass = 4;
+     optional double powerdBM = 5;
+     required Slot slots = 6;
+    }
+    
+    message Structure
+    {
+    required uint32 slotsPerFrame = 1;
+    required uint32 framesPerMultiFrame = 2;
+    required uint64 slotDurationMicroseconds = 3;
+    required uint64 slotOverheadMicroseconds = 4;
+    required uint64 bandwidthHz = 5;
+  }
+
+  repeated Frame frames = 1;
+  optional Structure structure = 2;
+  optional uint64 frequencyHz = 3;
+  optional uint64 dataRatebps = 4;
+  optional uint32 serviceClass = 5;
+  optional double powerdBm = 6;
+}
+     
       
        
