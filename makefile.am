@@ -1,6 +1,6 @@
 SUBDIRS=                        \
 .                               \
-Models/HeavyBall                \
+Models/HeavyBall                
 
 
 
