@@ -51,7 +51,8 @@ messageComponent.h                \
 messageComponent.inl              \
 packerstatuspublisher.h           \
 packetstatuspublisherimpl.h       \
-pathlossholder.h                  
+pathlossholder.h                  \
+
 
 
 nodit_libHBbase_la_SOURCES =      \
