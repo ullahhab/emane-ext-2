@@ -58,4 +58,4 @@ namespace EMANE
 }
       
           
-#include "emane/models/HBShim/messagecomponent.inl"          
+#include "messagecomponent.inl"          
