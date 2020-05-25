@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+./demo-start
+sleep 5
+echo "Send schedule event."
+emaneevent-tdmaschedule schedule.xml -i emanenode0
+sleep $1
+./demo-stop
