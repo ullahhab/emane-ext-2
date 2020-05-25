@@ -1,9 +1,13 @@
 #ifndef EMANEMODELHBSHIMMESSAGECOMPONENT_HEADER_
 #define EMANEMODELHBSHIMMESSAGECOMPONENT_HEADER_
 
-#include "emane/models/HBShim/messagecomponent.inl"
 
-//TODO: Subsidary files needed for defining and extending this class.
+#include "emane/types.h"
+#include "emane/utils/vectorio.h"
+
+#include <list>
+#include <vector>
+
 
 
 
@@ -54,5 +58,4 @@ namespace EMANE
 }
       
           
-      
-          
+#include "emane/models/HBShim/messagecomponent.inl"          
