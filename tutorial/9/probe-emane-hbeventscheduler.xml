@@ -1,0 +1,15 @@
+<probe-emane-HBEventScheduler address='localhost'>
+  <probes>
+    <EMANE.HBEventScheduler.Counters.General enable="yes"/>
+    <EMANE.HBEventScheduler.Counters.Schedule enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Events enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Schedule enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Class0 enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Class1 enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Class2 enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Class3 enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Class4 enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Queue enable="yes"/>
+    <EMANE.HBEventScheduler.Tables.Status.Slot enable="yes"/>
+  </probes>
+</probe-emane-HBEventScheduler>
