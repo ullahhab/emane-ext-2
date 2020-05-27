@@ -2,6 +2,7 @@
 <!DOCTYPE nem SYSTEM "file:///usr/share/emane/dtd/nem.dtd">
 <nem>
   <transport definition="transvirtual.xml"/>
+  <hbshim definition="hbmodel.xml"/>
   <mac definition="tdmaradiomodel.xml"/>
   <phy>
     <param name="fixedantennagain"         value="0.0"/>
