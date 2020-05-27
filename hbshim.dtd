@@ -1,1 +1,9 @@
+<?xml encoding="UTF-8"?>
 
+<!ELEMENT hbshim (param|paramlist)*>
+<!ATTLIST hbshim
+          name CDATA #IMPLIED
+          library NMTOKEN #IMPLIED>
+
+<!ENTITY % param SYSTEM "param.dtd">
+%param;
