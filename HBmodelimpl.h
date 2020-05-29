@@ -1,12 +1,12 @@
 #ifndef EMANETDMABASEMODELIMPL_HEADER_
  #define EMANETDMABASEMODELIMPL_HEADER_
  
- #include "emane/HeavyballshimLayerImpl.h"
+ #include "HeavyballshimLayerImpl.h"
  #include "emane/flowcontrolmanager.h"
  #include "emane/neighbormetricmanager.h"
  #include "emane/models/HeavyBall/HBmodel.h"
  #include "scheduler.h"
- #include "emane/models/tdma/queuemanager.h"
+ #include "HBqueuemanager.h"
  
  #include "emane/models/tdma/slotstatustablepublisher.h"
  #include "emane/models/tdma/receivemanager.h"
