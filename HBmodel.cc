@@ -1,4 +1,4 @@
-#include "emane/models/heavyball/HBmodel.h"
+#include "HBmodel.h"
 #include "HBmodelimpl.h"
 
 
