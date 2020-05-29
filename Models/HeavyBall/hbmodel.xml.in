@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mac SYSTEM "file://@datadir@/dtd/mac.dtd">
-<mac library='tdmaeventschedulerradiomodel'>
+<!DOCTYPE hbshim SYSTEM "file:///usr/share/emane/dtd/hbshim.dtd">
+<hbshim library='tdmaeventschedulerradiomodel'>
   <param name='fragmentcheckthreshold' value='2'/>
   <param name='fragmenttimeoutthreshold' value='5'/>
   <param name='neighbormetricdeletetime' value='60.0'/>
@@ -11,5 +11,5 @@
   <param name='queue.fragmentationenable' value='on'/>
   <param name='queue.strictdequeueenable' value='off'/>
   <param name="pcrcurveuri"
-         value='file://@datadir@/xml/models/mac/tdmaeventscheduler/tdmabasemodelpcr.xml'/>
-</mac>
+         value='file:///usr/share/emane/xml/models/mac/tdmaeventscheduler/tdmabasemodelpcr.xml'/>
+</hbshim>
