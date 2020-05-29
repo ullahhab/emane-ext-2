@@ -64,7 +64,7 @@ $(nodist_libHBbase_la_SOURCES)
 
 EXTRA_DIST=                          \
  hbmodelmodelmessage.proto          \
- tdmabasemodelpcr.xml
+ hbmodelpcr.xml
 
 clean-local:
       rm-f $(BUILT_SOURCES)
