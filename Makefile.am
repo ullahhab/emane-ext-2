@@ -21,14 +21,13 @@ libtdmabase_la_LIBADD=                       \
 
 
 
-//TODO: check for all the libraries that we need
+
 
 
 libHBbase_la_LDFLAGS=             \
 $(AM_LDFLAGS)                     \
 -avoid-version                    
 
-//TODO: check for all the libraries that we need
 
 libHBbase_la_SOURCES =            \
 HBQueue.cc                        \
@@ -56,12 +55,16 @@ pathlossholder.h                  \
 
 
 nodit_libHBbase_la_SOURCES =      \
-//TODO: some files that we need for 
+hbmodelmessage.proto.cc
+hbmodelmessage.proto.h
 
 
 BUILT_SOURCES =                   \
 $(nodist_libHBbase_la_SOURCES)
 
+EXTRA_DIST=                          \
+ hbmodelmodelmessage.proto          \
+ tdmabasemodelpcr.xml
 
 clean-local:
       rm-f $(BUILT_SOURCES)
