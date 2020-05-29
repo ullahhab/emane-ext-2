@@ -2,8 +2,8 @@
 #define EMANEHBBASEMODEL_HEADER_
 
 #include "heavyballshimLayerImpl.h"
-#include "emane/models/HeavyBall/scheduler.h"
-#inlcude "HBqueuemanager.h"
+#include "scheduler.h"
+#include "HBqueuemanager.h"
 
 namespace EMANE
 {
