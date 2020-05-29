@@ -31,10 +31,10 @@ BUILT_SOURCES =                      \
 edit = sed                                \
        -e 's|@datadir[@]|$(pkgdatadir)|g'  
 
-tdmanem.xml: tdmanem.xml.in
+hbmodel.xml: hbmodel.xml.in
 	$(edit) $< > $@
 
-tdmaradiomodel.xml: tdmaradiomodel.xml.in
+hbshim.xml: hbshim.xml.in
 	$(edit) $< > $@
 
 clean-local:
@@ -47,6 +47,6 @@ install-exec-hook:
 	cp -f ../tdmabasemodelpcr.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler
 
 uninstall-local:
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/tdmaeventscheduler/hbnem.xml
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyabll/tdmaeventscheduler/hbradiomodel.xml
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/tdmaeventscheduler/hbbasemodelpcr.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler/hbmodel.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyabll/hbeventscheduler/hbshim.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler/hbbasemodelpcr.xml
