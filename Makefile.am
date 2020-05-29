@@ -13,7 +13,7 @@ libtdmabase_la_CPPFLAGS=             \
 
 
 
-libtdmabase_la_LIBADD=                       \
+libHBbase_la_LIBADD=                         \
  $(libuuid_LIBS)                             \
  $(libxml2_LIBS)                             \
  $(protobuf_LIBS)                            \
