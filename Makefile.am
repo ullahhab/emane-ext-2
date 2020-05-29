@@ -33,6 +33,7 @@ libHBbase_la_SOURCES =            \
 HBQueue.cc                        \
 HBQueue.h                         \
 HBbasemodelmessage.h              \
+HBbasemodelmessage.cc             \
 HBbasemodelmessage.inl            \
 HBbasicqueuemanager.h             \
 HBmodel.h                         \
@@ -41,16 +42,20 @@ HBmodelimpl.h                     \
 HBmodelimpl.cc                    \
 HBqueuemanager.h                  \
 HBscheduleEvent.h                 \
+HBscheduleEvent.cc                \
 HBscheduleuser.h                  \
+HBscheduleevent.py                \
 HeavyBall.h                       \
 HeavyBall.inl                     \
 HeavyballshimLayerimpl.h          \
+hbschedule.py                     \
 HeavyballshimLayerimpl.inl        \
 messageComponent.h                \
 messageComponent.inl              \
 packerstatuspublisher.h           \
 packetstatuspublisherimpl.h       \
 pathlossholder.h                  \
+schedule.h
 
 
 
