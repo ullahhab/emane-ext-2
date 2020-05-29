@@ -60,8 +60,8 @@ schedule.h
 
 
 nodit_libHBbase_la_SOURCES =      \
-hbmodelmessage.proto.cc
-hbmodelmessage.proto.h
+ hbmodelmessage.proto.cc          \
+ hbmodelmessage.proto.h
 
 
 BUILT_SOURCES =                   \
