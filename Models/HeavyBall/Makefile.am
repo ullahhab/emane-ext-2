@@ -16,21 +16,17 @@ libHBeventscheduler_la_LDFLAGS= \
  -avoid-version
 
 libHBeventscheduler_la_SOURCES = \
- radiomodel.cc                       \
- eventscheduler.cc                   \
- eventtablepublisher.cc              \
- eventscheduler.h                    \
- eventtablepublisher.h               \
- slotter.h                           \
- slotter.inl
+HBeventscheduler.cc		 \
+eventscheduler.h		 \
+type.h				 \
 
 EXTRA_DIST=                          \
- tdmanem.xml.in                      \
- tdmaradiomodel.xml.in
+ hbmodel.xml.in                      \
+ hbshimmodel.xml.in
 
 BUILT_SOURCES =                      \
- tdmanem.xml                         \
- tdmaradiomodel.xml
+ hbshim.xml                          \
+ hbmodel.xml
 
 edit = sed                                \
        -e 's|@datadir[@]|$(pkgdatadir)|g'  
@@ -45,12 +41,12 @@ clean-local:
 	rm -f $(BUILT_SOURCES)
 
 install-exec-hook:	
-	$(mkinstalldirs) $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler
-	cp -f tdmanem.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler
-	cp -f tdmaradiomodel.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler
-	cp -f ../tdmabasemodelpcr.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler
+	$(mkinstalldirs) $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler
+	cp -f tdmanem.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler
+	cp -f tdmaradiomodel.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/shim/heavyball/hbeventscheduler
+	cp -f ../tdmabasemodelpcr.xml $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/hbeventscheduler
 
 uninstall-local:
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler/tdmanem.xml
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler/tdmaradiomodel.xml
-	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/mac/tdmaeventscheduler/tdmabasemodelpcr.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/tdmaeventscheduler/hbnem.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyabll/tdmaeventscheduler/hbradiomodel.xml
+	rm -f $(DESTDIR)$(datadir)/$(PACKAGE)/xml/models/shim/heavyball/tdmaeventscheduler/hbbasemodelpcr.xml
