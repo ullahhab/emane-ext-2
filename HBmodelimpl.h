@@ -4,7 +4,7 @@
  #include "HeavyballshimLayerImpl.h"
  #include "emane/flowcontrolmanager.h"
  #include "emane/neighbormetricmanager.h"
- #include "emane/models/HeavyBall/HBmodel.h"
+ #include "HBmodel.h"
  #include "scheduler.h"
  #include "HBqueuemanager.h"
  
