@@ -1,21 +1,21 @@
-lib_LTLIBRARIES = libtdmaeventschedulerradiomodel.la
+lib_LTLIBRARIES = libHBeventscheduler.la
 
-libtdmaeventschedulerradiomodel_la_CPPFLAGS= \
+libHBeventscheduler_la_CPPFLAGS= \
  -I@top_srcdir@/include              \
  $(AM_CPPFLAGS)                      \
  $(libemane_CFLAGS)
 
-libtdmaeventschedulerradiomodel_la_LIBADD=   \
+libHBeventscheduler_la_LIBADD=   \
  $(libuuid_LIBS)                             \
  $(libxml2_LIBS)                             \
  @top_srcdir@/src/libemane/.libs/libemane.la \
- ../.libs/libtdmabase.la
+ ../.libs/libHBbase.la
 
-libtdmaeventschedulerradiomodel_la_LDFLAGS= \
+libHBeventscheduler_la_LDFLAGS= \
  $(AM_LDFLAGS)                       \
  -avoid-version
 
-libtdmaeventschedulerradiomodel_la_SOURCES = \
+libHBeventscheduler_la_SOURCES = \
  radiomodel.cc                       \
  eventscheduler.cc                   \
  eventtablepublisher.cc              \
