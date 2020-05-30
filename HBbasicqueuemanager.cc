@@ -1,7 +1,7 @@
 #include "emane/models/tdma/basicqueuemanager.h"
 #include "emane/configureexception.h"
 #include "HBQueue.h"
-#include "queuestatuspublisher.h"
+#include "emane/src/models/mac/tdma/queuestatuspublisher.h"
 
 namespace
 {
