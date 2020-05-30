@@ -1,7 +1,7 @@
 #ifndef EMANEMODELSHBBASICQUEUEMANAGER_HEADER_
 #define EMANEMODELSHBBASICQUEUEMANAGER_HEADER_
 
-#include "emane/models/tdma/queuemanager.h"
+#include "HBqueuemanager.h"
 #include <map>
 
 namespace EMANE
