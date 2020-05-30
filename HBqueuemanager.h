@@ -7,7 +7,7 @@
 #include "emane/downstreampacket.h"
 #include "emane/models/tdma/types.h"
 #include "messagecomponent.h"
-#include "packetstatuspublisheruser.h"
+#include "emane/models/packetstatuspublisheruser.h"
 
 #include <tuple>
 #include <map>
