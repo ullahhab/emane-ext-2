@@ -1,4 +1,4 @@
-#include "emane/models/tdma/basicqueuemanager.h"
+#include "HBbasicqueuemanager.h"
 #include "emane/configureexception.h"
 #include "HBQueue.h"
 #include "emane/src/models/mac/tdma/queuestatuspublisher.h"
