@@ -9,7 +9,7 @@ namespace EMANE
 {
   namespace Models
   {
-    namespace TDMA
+    namespace HeavyBall
     {
       /**
        * @class PORManager
