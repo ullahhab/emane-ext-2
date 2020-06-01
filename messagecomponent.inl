@@ -1,5 +1,5 @@
 inline 
-EMANE::Models::HBShim::MessageComponent::MessageComponent(Type type, NEMId destination, const utils::VectorIO &vectorIO):
+EMANE::Models::HeavyBall::MessageComponent::MessageComponent(Type type, NEMId destination, const utils::VectorIO &vectorIO):
 type_{type},
 destination_{destination},
 framentIndex_{},
@@ -15,7 +15,7 @@ u64FragmentSequence_{}
   }
 }
 inline
-EMANE::Models::HBShim::MessageComponent::MessageComponent(Type type, NEMId destination, const Utils::VectorIO &vectorIO, size_t fragmentIndex, size_t fragmentOffset, std::unit64_t u64FragmentSequence, bool bMore);
+EMANE::Models::HeavyBall::MessageComponent::MessageComponent(Type type, NEMId destination, const Utils::VectorIO &vectorIO, size_t fragmentIndex, size_t fragmentOffset, std::unit64_t u64FragmentSequence, bool bMore);
 
 type_{type},
 destination_{destination},
@@ -34,13 +34,13 @@ n64FragmentSequence_{u64FragmentSequence}
 
 
 inline 
-const EMANE::Models::HBShim::MessageComponent::Data &
-EMANE::Models::HBShim::MessageComponent::MessageComponent::getData() const
+const EMANE::Models::HeavyBall::MessageComponent::Data &
+EMANE::Models::HeavyBall::MessageComponent::MessageComponent::getData() const
 {
   return data_;
 }
 inline
-bool EMANE::Models::HBShim::MessageComponent::isFragment() const
+bool EMANE::Models::HeavyBall::MessageComponent::isFragment() const
 {
   return fragmentOffset_ || bMoreFragments_;
 }
@@ -50,23 +50,23 @@ size_t EMANE::Models::MessageComponent::getFragmentIndex() const
   return fragmentIndex_;
 }
 inline 
-size_t EMANE::Models::HBShim::MessageComponent::getFragmentOffset() const
+size_t EMANE::Models::HeavyBall::MessageComponent::getFragmentOffset() const
 {
   return fragmentOffset_;
 }
 inline
-std::uint64_t EMANE::Models::HBShim::MessageComponent::getFragmentSequence() const
+std::uint64_t EMANE::Models::HeavyBall::MessageComponent::getFragmentSequence() const
 {
   return u64FragmentSequence_;
 }
 inline
-bool EMANE::Models::HBShim::MessageComponent::isMoreFragments() const
+bool EMANE::Models::HeavyBall::MessageComponent::isMoreFragments() const
 {
   retrun bMoreFragments_;
 }
 
 inline
-NEMId EMANE::Models::HBShim::MessageComponent::getDestination() const
+NEMId EMANE::Models::HeavyBall::MessageComponent::getDestination() const
 {
   return destination_;
 }
