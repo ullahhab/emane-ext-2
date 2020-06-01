@@ -15,7 +15,7 @@ namespace EMANE
 {
   namespace Models
   {
-    namespace HBShim
+    namespace HeavyBall
     {
       class MessageComponent
       {
