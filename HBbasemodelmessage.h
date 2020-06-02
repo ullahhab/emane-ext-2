@@ -3,7 +3,7 @@
 
 #include "emane/serializable.h"
 #include "emane/types.h"
-#include "messagecomponent.h"
+#include "emane/models/tdma/messagecomponent.h"
 
 namespace EMANE
 {
@@ -13,28 +13,30 @@ namespace EMANE
     {
       class BaseModelMessage : public Serializable
       {
-        public:
-          BaseModelMessage();
-          
-          BaseModelMessage(MessageComponents && messages); //TODO::What do we need for the basemodelmessage? channel and queueLength
-          
-          BaseModelMessage(const void *p, size_t len);
-          
-          
-          const MessageComponents & getMessages() const;
-          
-          //TODO:NEED MORE FUNCTIONS TO GET QUEUE LENGTH AND OTHER OBJECTS.After that implement HBbasemodelmessage.inl
-          
-          Serialization serialize() const override;
-          
-          private:
-            //TODO: NEED MORE FUNCTION to get queue length and other objects 
-            
-            MessageComponents messages_;
-            
-            };
-         }
-     }
+      public:
+        BaseModelMessage();
+
+        BaseModelMessage(std::uint64_t u64AbsoluteSlotIndex,
+                         std::uint64_t u64DataRatebps,
+                         MessageComponents && messages);
+
+        BaseModelMessage(const void * p, size_t len);
+
+        const MessageComponents & getMessages() const;
+
+        std::uint64_t getAbsoluteSlotIndex() const;
+
+        std::uint64_t getDataRate() const;
+
+        Serialization serialize() const override;
+
+      private:
+        std::uint64_t u64AbsoluteSlotIndex_;
+        std::uint64_t u64DataRatebps_;
+        MessageComponents messages_;
+      };
+    }
+  }
 }
 #include "HBbasemodelmessage.inl"
 #endif
